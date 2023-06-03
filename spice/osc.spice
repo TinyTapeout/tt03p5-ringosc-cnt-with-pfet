@@ -1,0 +1,33 @@
+Standard cell Simulation
+.lib "./sky130_fd_pr/models/sky130.lib.spice" tt
+.include "./includes.spice"
+
+* instantiate the cell - adjust this to match your standard cell
+Xinv1 Y VGND VNB VPB VPWR I1 sky130_fd_sc_hd__inv_2
+Xinv2 I1 VGND VNB VPB VPWR I2 sky130_fd_sc_hd__inv_2
+Xinv3 I2 VGND VNB VPB VPWR I3 sky130_fd_sc_hd__inv_2
+Xinv4 I3 VGND VNB VPB VPWR I4 sky130_fd_sc_hd__inv_2
+Xinv5 I4 VGND VNB VPB VPWR I5 sky130_fd_sc_hd__inv_2
+Xinv6 I5 VGND VNB VPB VPWR I6 sky130_fd_sc_hd__inv_2
+Xinv7 I6 VGND VNB VPB VPWR I7 sky130_fd_sc_hd__inv_2
+Xinv8 I7 VGND VNB VPB VPWR I8 sky130_fd_sc_hd__inv_2
+Xinv9 I8 VGND VNB VPB VPWR I9 sky130_fd_sc_hd__inv_2
+Xinv10 I9 VGND VNB VPB VPWR I10 sky130_fd_sc_hd__inv_2
+Xinv11 I10 VGND VNB VPB VPWR Y sky130_fd_sc_hd__inv_2
+
+*     CLK   D    RESET_B VGND VNB VPB VPWR Q Q_N
+Xdff1 Y     Q_N  VPWR    VGND VNB VPB VPWR Q Q_N sky130_fd_sc_hd__dfrbp_1
+
+* set gnd and power
+Vgnd VGND 0 0
+Vdd VPWR VGND 1.8
+
+* setup the transient analysis
+.tran 1p 3n 0
+
+.control
+run
+plot Y Q Q_N
+.endc
+
+.end
