@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Sat Jun  3 18:41:42 2023
+[*]
+[dumpfile] "/home/uri/p/tt03p5-ringosc-cnt/src/tb.vcd"
+[dumpfile_mtime] "Sat Jun  3 18:41:36 2023"
+[dumpfile_size] 42511
+[savefile] "/home/uri/p/tt03p5-ringosc-cnt/src/tb.gtkw"
+[timestart] 0
+[size] 1908 999
+[pos] -1 -1
+*-12.975483 27420 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+[treeopen] tb.osc.
+[sst_width] 214
+[signals_width] 152
+[sst_expanded] 1
+[sst_vpaned_height] 292
+@28
+tb.stop_i
+tb.reset_i
+@22
+tb.shift_i[5:0]
+tb.cnt_o[7:0]
+@200
+-
+@22
+tb.osc.osc[12:0]
+@28
+tb.osc.cnt_reset
+@22
+tb.osc.cnt[63:0]
+[pattern_trace] 1
+[pattern_trace] 0

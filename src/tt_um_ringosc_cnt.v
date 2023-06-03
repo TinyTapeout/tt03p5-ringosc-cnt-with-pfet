@@ -29,6 +29,7 @@ module tt_um_ringosc_cnt #(
 	wire [63:0] cnt_clk = { cnt_n[62:0], osc[0] };
 
 	wire [5:0] cnt_shift = ui_in[5:0];
+	wire cnt_stop = ui_in[6];
 	wire cnt_reset = ui_in[7];
 	wire [63:0] cnt_shifted = cnt >> cnt_shift;
 
@@ -37,21 +38,27 @@ module tt_um_ringosc_cnt #(
 	genvar i;
 	generate
 		// Oscillator
-		for (i = 0; i < OSC_LEN; i = i + 1) begin
-			sky130_fd_sc_hd__inv_2 cnt_bit_I (
-				.A     (osc[i]),
-				.Y     (osc[i > 0 ? i - 1 : OSC_LEN - 1])
+		for (i = 0; i < OSC_LEN; i = i + 1) begin: ringosc
+			wire y;
+			if (i == 0)
+				assign y = cnt_stop ? 0 : osc[OSC_LEN - 1];
+			else
+				assign y = osc[i - 1];
+			
+			tt_prim_inv inv (
+				.a (y),
+				.y (osc[i])
 			);
 		end
 
 		// Counter
-		for (i=0; i<64; i=i+1) begin
-			sky130_fd_sc_hd__dfrbp_2 cnt_bit_I (
-				.D     (cnt_n[i]),
-				.Q     (cnt[i]),
-				.Q_N   (cnt_n[i]),
-				.CLK   (cnt_clk[i]),
-				.RESET_B (!cnt_reset)
+		for (i=0; i<64; i=i+1) begin: counter
+			tt_prim_dfrbp cnt_bit_I (
+				.d     (cnt_n[i]),
+				.q     (cnt[i]),
+				.q_n   (cnt_n[i]),
+				.clk   (cnt_clk[i]),
+				.rst_n (!cnt_reset)
 			);
 		end
 	endgenerate
