@@ -1,5 +1,5 @@
 /*
- * tt_um_osc_cnt.v
+ * tt_um_ringosc_cnt.v
  *
  * Ring oscillator with 64-bit counter
  *
@@ -8,7 +8,7 @@
 
 `default_nettype none
 
-module tt_um_osc_cnt #(
+module tt_um_ringosc_cnt #(
 	parameter integer OSC_LEN = 13
 )
 (
