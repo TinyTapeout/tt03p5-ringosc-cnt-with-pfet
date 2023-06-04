@@ -22,7 +22,7 @@ module tb (
     end
 
     // instantiate the DUT
-    tt_um_ringosc_cnt osc(
+    tt_um_ringosc_cnt_pfet osc(
         `ifdef GL_TEST
             .vccd1( 1'b1),
             .vssd1( 1'b0),

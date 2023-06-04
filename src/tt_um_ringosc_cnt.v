@@ -8,7 +8,7 @@
 
 `default_nettype none
 
-module tt_um_ringosc_cnt #(
+module tt_um_ringosc_cnt_pfet #(
 	parameter integer OSC_LEN = 13
 )
 (
